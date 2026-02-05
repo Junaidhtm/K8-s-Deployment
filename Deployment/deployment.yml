@@ -1,0 +1,27 @@
+apiVerson: v1
+Kind: Deployment
+metadata: 
+ name: my_app
+ label: nginx
+ environment: production
+spec:
+ relicas: 3
+selector:
+ matchlabels
+  app: nginx
+strategy:
+ type: RollingUpdate
+ rollingUpdate:
+  maxSurge: 25%
+  maxUnavailable: 25%
+template:
+  metadata:
+    labels:
+      app: nginx           # MUST match selector.matchLabels
+  spec:
+    containers:
+    - name: nginx
+      image: nginx:1.21
+      ports:
+      - containerPort: 80
+ 
